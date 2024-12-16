@@ -1,7 +1,7 @@
 ---
-title: "Client Report - [Insert Project Title]"
+title: "Client Report - Project 5"
 subtitle: "Course DS 250"
-author: "[STUDENT NAME]"
+author: "YOUR NAME HERE"
 format:
   html:
     self-contained: true
@@ -25,4 +25,451 @@ execute:
     
 ---
 
-### Paste in a template
+_THIS `.qmd` FILE SHOULD BE USED TO WRITE YOUR REPORT.  YOU WILL NEED TO COMPILE THE REPORT INTO A `.html` DOCUMENT AND SUBMIT IT ON CANVAS._
+
+```{python}
+#| label: libraries
+#| include: false
+import pandas as pd
+import numpy as np
+from lets_plot import *
+LetsPlot.setup_html()
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
+```
+
+
+```{python}
+# Load any data you need for the report
+# df = pd.read_csv('filename.csv')
+
+```
+
+
+## Elevator pitch
+
+PLACE YOUR "30 SECOND" SALES PITCH HERE.  What are you trying to show in this report?
+
+
+```{python}
+# Any code for your pitch
+
+```
+
+__Highlight the Questions and Tasks__
+
+## Question|Task 1
+
+Instructions:
+
+Shorten the column names and clean them up for easier use with pandas. Provide a table or list that exemplifies how you fixed the names.
+
+What was done:
+To complete this task, I shortened and cleaned up column names for easier use with pandas. I replaced verbose names with concise, readable alternatives, such as changing "Have you seen any of the 6 films in the Star Wars franchise?" to seen_any, and applied consistent snake_case formatting throughout. Additionally, I resolved encoding issues in column names and removed meaningless unnamed columns.
+
+```{python}
+#| label: Q1
+#| code-summary: Read and format data
+# Include and execute your code here
+import pandas as pd
+
+# Define the file path
+file_path = "StarWars.csv"
+
+# Load the dataset with error handling for encoding
+try:
+    data = pd.read_csv(file_path, encoding='utf-8')
+except UnicodeDecodeError:
+    print("UTF-8 decoding failed. Trying 'latin1' encoding...")
+    data = pd.read_csv(file_path, encoding='latin1')
+
+# Display the first few rows to confirm successful loading
+print("Dataset Loaded Successfully. First few rows:")
+print(data.head())
+
+# Original column names
+original_column_names = data.columns.tolist()
+print("\nOriginal Column Names:")
+print(original_column_names)
+
+# Define a dictionary to map original names to cleaned names
+column_mapping = {
+    "RespondentID": "respondent_id",
+    "Have you seen any of the 6 films in the Star Wars franchise?": "seen_any",
+    "Do you consider yourself to be a fan of the Star Wars film franchise?": "is_fan",
+    "Star Wars: Episode I  The Phantom Menace": "seen_episode_1",
+    "Star Wars: Episode II  Attack of the Clones": "seen_episode_2",
+    "Star Wars: Episode III  Revenge of the Sith": "seen_episode_3",
+    "Star Wars: Episode IV  A New Hope": "seen_episode_4",
+    "Star Wars: Episode V The Empire Strikes Back": "seen_episode_5",
+    "Star Wars: Episode VI Return of the Jedi": "seen_episode_6",
+    "Please rank the Star Wars films in order of preference with 1 being your favorite film in the franchise and 6 being your least favorite film. - Star Wars: Episode I  The Phantom Menace": "rank_episode_1",
+    "Please rank the Star Wars films in order of preference with 1 being your favorite film in the franchise and 6 being your least favorite film. - Star Wars: Episode II  Attack of the Clones": "rank_episode_2",
+    "Please rank the Star Wars films in order of preference with 1 being your favorite film in the franchise and 6 being your least favorite film. - Star Wars: Episode III  Revenge of the Sith": "rank_episode_3",
+    "Please rank the Star Wars films in order of preference with 1 being your favorite film in the franchise and 6 being your least favorite film. - Star Wars: Episode IV  A New Hope": "rank_episode_4",
+    "Please rank the Star Wars films in order of preference with 1 being your favorite film in the franchise and 6 being your least favorite film. - Star Wars: Episode V The Empire Strikes Back": "rank_episode_5",
+    "Please rank the Star Wars films in order of preference with 1 being your favorite film in the franchise and 6 being your least favorite film. - Star Wars: Episode VI Return of the Jedi": "rank_episode_6",
+    "Which character shot first?": "character_shot_first",
+    "Are you familiar with the Expanded Universe?": "familiar_eu",
+    "Do you consider yourself to be a fan of the Expanded Universe?Do you consider yourself to be a fan of the Expanded Universe?\x8cæ": "is_fan_expanded_universe",
+    "Do you consider yourself to be a fan of the Star Trek franchise?": "is_fan_star_trek",
+    "Gender": "gender",
+    "Age": "age",
+    "Household Income": "income",
+    "Education": "education",
+    "Location (Census Region)": "location"
+}
+
+# Apply the renaming
+data.rename(columns=column_mapping, inplace=True)
+
+# Drop unnamed columns if they hold no useful data
+unnamed_columns = [col for col in data.columns if col.startswith('Unnamed:')]
+data.drop(columns=unnamed_columns, inplace=True)
+
+# Display the cleaned column names
+cleaned_column_names = data.columns.tolist()
+print("\nCleaned Column Names:")
+print(cleaned_column_names)
+
+# Save the cleaned dataset for future steps
+data.to_csv("StarWars_Cleaned.csv", index=False)
+print("\nCleaned dataset saved as 'StarWars_Cleaned.csv'.")
+
+
+```
+
+Original vs. Cleaned Column Names
+
+| **Original Column Name**                                                                                                   | **Cleaned Column Name**           |
+|---------------------------------------------------------------------------------------------------------------------------|------------------------------------|
+| `RespondentID`                                                                                                            | `respondent_id`                   |
+| `Have you seen any of the 6 films in the Star Wars franchise?`                                                            | `seen_any`                        |
+| `Do you consider yourself to be a fan of the Star Wars film franchise?`                                                   | `is_fan`                          |
+| `Star Wars: Episode I  The Phantom Menace`                                                                                | `seen_episode_1`                  |
+| `Please rank the Star Wars films in order of preference with 1 being your favorite film in the franchise and 6 being your least favorite film. - Star Wars: Episode I  The Phantom Menace` | `rank_episode_1`                  |
+| `Which character shot first?`                                                                                             | `character_shot_first`            |
+| `Do you consider yourself to be a fan of the Expanded Universe?\x8cæ`                                                     | `is_fan_expanded_universe`        |
+| `Do you consider yourself to be a fan of the Star Trek franchise?`                                                        | `is_fan_star_trek`                |
+| `Gender`                                                                                                                  | `gender`                          |
+| `Age`                                                                                                                     | `age`                             |
+| `Household Income`                                                                                                        | `income`                          |
+| `Education`                                                                                                               | `education`                       |
+| `Location (Census Region)` 
+
+
+
+
+
+
+
+## Question|Task 2
+
+Instructions:
+Clean and format the data so that it can be used in a machine learning model. As you format the data, you should complete each item listed below. In your final report provide example(s) of the reformatted data with a short description of the changes made.
+
+- Filter the dataset to respondents that have seen at least one film
+- Create a new column that converts the age ranges to a single number. Drop the age range categorical column
+- Create a new column that converts the education groupings to a single number. Drop the school categorical column
+- Create a new column that converts the income ranges to a single number. Drop the income range categorical column
+- Create your target (also known as “y” or “label”) column based on the new income range column
+- One-hot encode all remaining categorical columns
+
+ADD YOUR COMMENTS HERE. Explain any data, charts or tables
+
+```{python}
+#| label: Q2
+#| code-summary: Read and format data
+# Include and execute your code here
+import pandas as pd
+
+# Load the original dataset
+file_path = "StarWars.csv"
+try:
+    data = pd.read_csv(file_path, encoding='utf-8')
+except UnicodeDecodeError:
+    data = pd.read_csv(file_path, encoding='latin1')
+
+
+# Rename columns for better access
+data.rename(columns={
+    "Have you seen any of the 6 films in the Star Wars franchise?": "seen_any",
+    "Do you consider yourself to be a fan of the Star Wars film franchise?": "is_fan",
+    "Please rank the Star Wars films in order of preference with 1 being your favorite film in the franchise and 6 being your least favorite film.": "rank_episode_1",
+    "Unnamed: 10": "rank_episode_2",
+    "Unnamed: 11": "rank_episode_3",
+    "Unnamed: 12": "rank_episode_4",
+    "Unnamed: 13": "rank_episode_5",
+    "Unnamed: 14": "rank_episode_6",
+},inplace=True)
+
+
+# Filter the dataset to respondents who have seen at least one film
+filtered_data = data[data['seen_any'] == 'Yes'].copy()
+
+
+# Map age ranges to a single numeric value
+age_mapping = {
+    "18-29": 24,
+    "30-44": 37,
+    "45-60": 52,
+    "> 60": 65
+}
+filtered_data['age_numeric'] = filtered_data['Age'].map(age_mapping)
+filtered_data.drop(columns=['Age'], inplace=True)
+
+# Map education levels to a single numeric value
+education_mapping = {
+    "Less than high school degree": 0,
+    "High school degree": 1,
+    "Some college or Associate degree": 2,
+    "Bachelor degree": 3,
+    "Graduate degree": 4
+}
+filtered_data['education_numeric'] = filtered_data['Education'].map(education_mapping)
+filtered_data.drop(columns=['Education'], inplace=True)
+
+# Map income ranges to a single numeric value
+income_mapping = {
+    "$0 - $24,999": 12500,
+    "$25,000 - $49,999": 37500,
+    "$50,000 - $99,999": 75000,
+    "$100,000 - $149,999": 125000,
+    "$150,000+": 150000
+}
+filtered_data['income_numeric'] = filtered_data['Household Income'].map(income_mapping)
+filtered_data.drop(columns=['Household Income'], inplace=True)
+
+
+# Create target column: Whether the income is over $50,000
+filtered_data['makes_over_50k'] = (filtered_data['income_numeric'] > 50000).astype(int)
+
+
+# Combine all movie columns into a single column indicating movies seen
+movie_columns = [
+    "Which of the following Star Wars films have you seen? Please select all that apply.",
+    "Unnamed: 4",
+    "Unnamed: 5",
+    "Unnamed: 6",
+    "Unnamed: 7",
+    "Unnamed: 8"
+]
+
+filtered_data['movies_seen'] = filtered_data[movie_columns].apply(
+    lambda row: ', '.join(row.dropna().astype(str)), axis=1
+)
+
+# Drop the original movie columns
+filtered_data.drop(columns=movie_columns, inplace=True)
+
+
+# One-hot encode remaining categorical columns
+categorical_columns = ['Gender', 'Location (Census Region)']
+encoded_data = pd.get_dummies(filtered_data, columns=categorical_columns, drop_first=True)
+
+# Save the cleaned data
+encoded_data.to_csv("StarWars_Cleaned_ML.csv", index=False)
+
+# Display the first few rows of the cleaned data
+print("Cleaned and formatted data for machine learning:")
+print(encoded_data.head())
+
+
+```
+
+
+## Question|Task 3
+
+Instructions:
+Validate that the data provided on GitHub lines up with the article by recreating 2 of the visuals from the article.
+
+ADD YOUR COMMENTS HERE. Explain any data, charts or tables
+
+```{python}
+#| label: Q3
+#| code-summary: Read and format data
+# Include and execute your code here
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the cleaned dataset
+file_path = "StarWars_Cleaned_ML.csv"
+data = pd.read_csv(file_path)
+
+# List of movies
+movie_titles = [
+    "Star Wars: Episode I  The Phantom Menace",
+    "Star Wars: Episode II  Attack of the Clones",
+    "Star Wars: Episode III  Revenge of the Sith",
+    "Star Wars: Episode IV  A New Hope",
+    "Star Wars: Episode V  The Empire Strikes Back",
+    "Star Wars: Episode VI Return of the Jedi"
+]
+
+# Short titles for visualization
+short_titles = [
+    "The Phantom Menace",
+    "Attack of the Clones",
+    "Revenge of the Sith",
+    "A New Hope",
+    "The Empire Strikes Back",
+    "Return of the Jedi"
+]
+
+# Function to count movies seen
+def count_movies_seen(movies_string):
+    if isinstance(movies_string, str):
+       return len(movies_string.split(','))
+    return 0
+
+
+# Filter respondents who have seen all the movies
+seen_all_data = data[data['movies_seen'].apply(count_movies_seen) == 6].copy()
+
+
+# --- Recreate Chart 1: "What's the Best 'Star Wars' Movie?" ---
+# -----------------------------------------------------------------------------
+
+# Filter columns related to rankings
+rankings = seen_all_data.filter(like="rank")
+
+# Count the number of times each movie was ranked as the best (rank 1)
+best_movie_counts = []
+for i in range(rankings.shape[1]):
+  best_movie_counts.append((rankings.iloc[:,i] == 1).sum())
+
+# Calculate the total number of "best movie" votes across ALL columns
+total_best_votes = sum(best_movie_counts)
+
+# Calculate percentages for the best movie rankings
+best_movie_percentages = [
+    round((count / total_best_votes) * 100) if total_best_votes > 0 else 0
+    for count in best_movie_counts
+]
+
+# Create the bar chart
+plt.figure(figsize=(10, 6))
+bars = plt.barh(short_titles, best_movie_percentages, color="green")
+for bar, percentage in zip(bars, best_movie_percentages):
+    plt.text(bar.get_width() + 1, bar.get_y() + bar.get_height() / 2, f"{percentage}%", va='center')
+plt.title(f"What's the Best 'Star Wars' Movie?\nOf {len(seen_all_data)} respondents who have seen all six films")
+plt.xlabel("Percentage")
+plt.ylabel("Movies")
+plt.xlim(0, 100)  # Adjust for better alignment
+
+# Add note about data source
+plt.figtext(0.5, -0.1, "Source: SurveyMonkey Audience", ha="center", fontsize=10, color="gray")
+
+plt.tight_layout()
+plt.show()
+
+
+# --- Recreate Chart 2: "Who Shot First?" ---
+# -----------------------------------------------------------------------------
+
+# Extract the 'Which character shot first?' column
+shot_first_data = data['Which character shot first?'].dropna()
+
+# Calculate the response percentages
+response_counts = shot_first_data.value_counts()
+total_responses = response_counts.sum()
+response_percentages = (response_counts / total_responses * 100).round()
+
+# Labels and values for the plot
+responses = response_percentages.index.tolist()
+percentages = response_percentages.values.tolist()
+
+# Plot the "Who Shot First?" bar chart
+plt.figure(figsize=(10, 6))
+bars = plt.barh(responses, percentages, color='blue')
+plt.xlabel("Percentage")
+plt.ylabel("Responses")
+plt.title("Who Shot First?\nAccording to 834 respondents")
+
+# Add percentage labels to each bar
+for bar, percentage in zip(bars, percentages):
+    plt.text(bar.get_width() + 1, bar.get_y() + bar.get_height() / 2, f"{percentage}%", va='center')
+
+# Add note about data source
+plt.figtext(0.5, -0.1, "Source: SurveyMonkey Audience", ha="center", fontsize=10, color="gray")
+
+plt.tight_layout()
+plt.show()
+
+
+
+
+
+```
+
+ADD MORE QUESTION SECTIONS AS NEEDED
+
+## Question|Task 4
+
+Instructions:
+Build a machine learning model that predicts whether a person makes more than $50k. Describe your model and report the accuracy.
+
+ADD YOUR COMMENTS HERE. Explain any data, charts or tables
+
+```{python}
+#| label: Q4
+#| code-summary: Read and format data
+# Include and execute your code here
+
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import pandas as pd
+from IPython.display import display, HTML
+
+# ---- Load Dataset ----
+file_path = 'StarWars_Cleaned_ML.csv'  # Update with your file path
+df = pd.read_csv(file_path)
+
+# ---- Define Features (X) and Target (y) ----
+X = df.drop(columns=['makes_over_50k'])  # Drop target column
+y = df['makes_over_50k']
+
+# ---- Split Dataset ----
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# ---- Train Random Forest Model ----
+rf_model = RandomForestClassifier(random_state=42)
+rf_model.fit(X_train, y_train)
+
+# ---- Make Predictions ----
+y_pred = rf_model.predict(X_test)
+
+# ---- Evaluate Model ----
+accuracy = accuracy_score(y_test, y_pred)
+conf_matrix = confusion_matrix(y_test, y_pred)
+class_report = classification_report(y_test, y_pred, target_names=['No', 'Yes'])
+
+# ---- Format Confusion Matrix ----
+conf_matrix_df = pd.DataFrame(
+    conf_matrix,
+    columns=["Predicted: No", "Predicted: Yes"],
+    index=["Actual: No", "Actual: Yes"]
+)
+
+conf_matrix_html = conf_matrix_df.to_html(classes="table table-bordered", header=True, index=True)
+
+# Render Classification Report
+class_report_df = pd.DataFrame(
+    [x.split() for x in class_report.splitlines()[2:-3]],
+    columns=["Class", "Precision", "Recall", "F1-Score", "Support"]
+).to_html(classes="table table-bordered", header=True, index=False)
+
+# Add Accuracy as a Separate Line
+accuracy_html = f"<p><strong>Accuracy:</strong> {accuracy:.2%}</p>"
+
+# ---- Display Results ----
+display(HTML("<h3>Confusion Matrix</h3>" + conf_matrix_html + accuracy_html))
+display(HTML("<h3>Classification Report</h3>" + class_report_df))
+
+
+
+```
+
