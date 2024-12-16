@@ -1,89 +1,54 @@
+# Michael J.
+
+## Education  
+**Bachelor of Science in Software Engineering - Programming Design & Machine Learning** | Senior (Student)  
+Brigham-Young University-Idaho  
+*July 2020 - Current*  
+- Minor: Computer Programming  
+- Certificates: Computer-Aided Design and Drafting (CADD), Machine Learning Fundamentals  
+- GPA: 3.37  
+
 ---
-layout: cv
-title: Isaac Newtons's CV
+
+## Certifications  
+- Certified SolidWorks Associate (CSWA)  
+- Certified SolidWorks Professional (CSWPA-DT)  
+- OSHA 10-Hour Safety Certification  
+
 ---
-# Isaac Newton
-Physicist, Mathematician, Cambridge professor.
 
-<div id="webaddress">
-<a href="isaac@applesdofall.org">isaac@applesdofall.org</a>
-| <a href="http://en.wikipedia.org/wiki/Isaac_Newton">My wikipedia page</a>
-</div>
+## Relevant Project Experience  
+### Software Engineering Projects  
+- **Python and C# Applications**: Developed Python and C# applications, utilizing Pygame for retro games and C# for logic-intensive projects like Checkers and Snake. Applied Big O Notation to optimize algorithms for efficiency and scalable performance.  
+- **Data Analysis**: Conducted data analysis using SQL and SQLite; visualized results with Pandas and Lets-Plot to generate insights, supporting data-driven decision-making.  
+- **Machine Learning**: Integrated machine learning fundamentals, such as predictive modeling, in project coursework.  
 
+### Technical Skills  
+- **Software Engineering**: Big O Notation, Object-Oriented Design, Software Development Life Cycle (SDLC), Debugging, Testing, Software Design Patterns, Agile Methodologies  
+- **Programming Skills**: Python, C#, HTML5, CSS, SQL, SQLite  
+- **Data Science & Machine Learning**: Pandas, Lets-Plot, Data Analysis, Data Visualization, Machine Learning Algorithms  
+- **Tools & Technologies**: SolidWorks (CSWA, CSWPA-DT), CAD software, Git for Version Control, Pygame (for interactive game development), Modular Code Design  
 
-## Currently
+---
 
-Standing on the shoulders of giants
+## Experience  
+**Junior Production Technician**  
+*Environmental Stone Works (Cornerstone Building Brands) | St. George, Utah*  
+*Aug 2022 - Dec 2022*  
+- Enhanced technical communication skills and team collaboration in high-demand settings.  
 
-### Specialized in
+**Construction Worker**  
+*Precision Precast and Construction | Rexburg, Idaho*  
+*Jan 2023 - Jul 2024*  
+- Worked with CAD designs and coordinated with teams to manage complex, technical tasks.  
 
-Laws of motion, gravitation, minting coins, disliking [Robert Hooke](http://en.wikipedia.org/wiki/Robert_Hooke)
+---
 
+## Professional Summary  
+Detail-oriented and highly adaptable Software Engineering student with a robust proficiency in Python, C#, SQL, and data science methodologies. Demonstrates strong analytical abilities with expertise in algorithm efficiency, Big O notation, and project-based development.  
 
-### Research interests
+Known for a quick learning curve when tackling new programming languages and technical tools, showing a proven ability to efficiently absorb and apply complex concepts across diverse projects.  
 
-Cooling, power series, optics, alchemy, planetary motions, apples.
+A team-oriented collaborator and problem solver, with an emphasis on effective communication and English language competency to convey technical requirements clearly and precisely. Also possesses a high level of attention to detail and a commitment to software design best practices, excelling in areas like data analysis, software architecture, and user-focused design.  
 
-
-## Education
-
-`1654-1660`
-__The King's School, Grantham.__
-
-`June 1661 - now`
-__Trinity College, Cambridge__
-
-- Sizar
-
-`1667 - death`
-__Trinity College, Cambridge__
-
-- Fellow
-
-
-
-## Awards
-
-`2012`
-President, *Royal Society*, London, UK
-
-Associate, *French Academy of Science*, Paris, France
-
-
-
-## Publications
-
-<!-- A list is also available [online](http://scholar.google.co.uk/citations?user=LTOTl0YAAAAJ) -->
-
-### Journals
-
-`1669`
-Newton Sir I, De analysi per æquationes numero terminorum infinitas. 
-
-`1669`
-Lectiones opticæ.
-
-etc. etc. etc.
-
-### Patents
-
-`2012`
-Infinitesimal calculus for solutions to physics problems, [SMBC](http://www.techdirt.com/articles/20121011/09312820678/if-patents-had-been-around-time-newton.shtml) patent 001
-
-
-## Occupation
-
-`1600`
-__Royal Mint__, London
-
-- Warden
-- Minted coins
-
-`1600`
-__Lucasian professor of Mathematics__, Cambridge University
-
-
-
-<!-- ### Footer
-
-Last updated: May 2013 -->
+Passionate about innovation, constantly seeking to refine and improve systems for both technical accuracy and user experience. Demonstrates a thorough understanding of the software development life cycle (SDLC), with a strong grasp of design patterns, modular code, debugging, and Agile methodologies. Driven to contribute and grow within dynamic programming environments where precision, innovation, and continuous improvement are valued.  

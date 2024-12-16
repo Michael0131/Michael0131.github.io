@@ -5,7 +5,7 @@ website:
   title: "Michael Johnson - Data Science Portfolio"
   favicon: Images/favicon.png
   back-to-top-navigation: true
-  repo-url: https://github.com/Michael0131/ds250Fall2024/tree/main/DS250_Project_Files
+  repo-url: https://github.com/Michael0131/Michael0131.github.io
   #repo-actions: [issue] #if you want to allow others to report issues on your site uncomment this line
 
   page-footer: 
